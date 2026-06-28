@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arcgis-project"
+version = "0.1.0"
+description = "Starter project built on the ArcGIS API for Python"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "GiantBeaver9" }]
+keywords = ["arcgis", "gis", "geospatial", "esri"]
+dependencies = [
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+# The heavy geospatial SDK — only needed for live portal access.
+arcgis = ["arcgis>=2.3"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+arcgis-project = "arcgis_project.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["arcgis_project"]
